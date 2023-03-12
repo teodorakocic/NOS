@@ -1,0 +1,1 @@
+cmd_/home/teodora/add_module/Module.symvers := sed 's/ko$$/o/' /home/teodora/add_module/modules.order | scripts/mod/modpost -m -a  -o /home/teodora/add_module/Module.symvers -e -i Module.symvers   -T -

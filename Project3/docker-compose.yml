@@ -1,0 +1,76 @@
+version: "3"
+services: 
+    mongodb:
+        container_name: mongodb
+        image: "mongo:latest"
+        networks:
+            - sensordata
+        labels:
+            - kompose.service.type=LoadBalancer
+    
+    smokedetection:
+        build: ./smokedetection
+        image: smokedetection:latest
+        depends_on: 
+            - mongodb
+        container_name: smokedetection
+        restart: always
+        ports:
+            - "5001:5001"
+        networks:
+            - sensordata
+        labels:
+            - kompose.service.type=LoadBalancer
+
+    zookeeper-server:
+        image: bitnami/zookeeper:3.6.1
+        container_name: zookeeper-server
+        ports:
+            - "2181:2181"
+        environment:
+            - ALLOW_ANONYMOUS_LOGIN=yes
+        networks:
+            - sensordata
+        labels:
+            - kompose.service.type=LoadBalancer
+
+
+    kafka-server:
+        image: bitnami/kafka:2.5.0
+        container_name: kafka-server
+        ports:
+            - "9092:9092"
+            - "50023:50023"
+        environment:
+            - ALLOW_PLAINTEXT_LISTENER=yes
+            - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181
+            - KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=PLAINTEXT_HOST:PLAINTEXT,PLAINTEXT:PLAINTEXT
+            - KAFKA_CFG_LISTENERS=PLAINTEXT://:9092,PLAINTEXT_HOST://:50023
+            - KAFKA_CFG_ADVERTISED_LISTENERS=PLAINTEXT://kafka-server:9092,PLAINTEXT_HOST://localhost:50023
+            - KAFKA_INTER_BROKER_LISTENER_NAME=PLAINTEXT
+        depends_on:
+            - zookeeper-server
+        networks:
+            - sensordata
+        labels:
+            - kompose.service.type=LoadBalancer
+
+    analysis:
+        build: ./analysis
+        image: analysis:latest
+        depends_on: 
+            - mongodb
+            - smokedetection
+        container_name: analysis
+        restart: always
+        ports:
+            - "5002:5002"
+        networks:
+            - sensordata
+        labels:
+            - kompose.service.type=LoadBalancer
+        
+
+networks:
+  sensordata:
+    external: true

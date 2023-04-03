@@ -1,0 +1,44 @@
+// /home/teodora/zephyrproject/zephyr/samples/shields/x_nucleo_iks01a2/standard/build/zephyr/zephyr_pre0.elf
+digraph "Device dependency graph" {
+	9 [label="rcc@40023800\nOrdinal: 9 | Handle: 1\n/soc/rcc@40023800"]
+	39 [label="interrupt-controller@40013c00\nOrdinal: 39 | Handle: 2\n/soc/interrupt-controller@40013c00"]
+	84 [label="gpio@40021c00\nOrdinal: 84 | Handle: 3\n/soc/pin-controller@40020000/gpio@40021c00"]
+	83 [label="gpio@40021800\nOrdinal: 83 | Handle: 4\n/soc/pin-controller@40020000/gpio@40021800"]
+	82 [label="gpio@40021400\nOrdinal: 82 | Handle: 5\n/soc/pin-controller@40020000/gpio@40021400"]
+	81 [label="gpio@40021000\nOrdinal: 81 | Handle: 6\n/soc/pin-controller@40020000/gpio@40021000"]
+	80 [label="gpio@40020c00\nOrdinal: 80 | Handle: 7\n/soc/pin-controller@40020000/gpio@40020c00"]
+	22 [label="gpio@40020800\nOrdinal: 22 | Handle: 8\n/soc/pin-controller@40020000/gpio@40020800"]
+	54 [label="gpio@40020400\nOrdinal: 54 | Handle: 9\n/soc/pin-controller@40020000/gpio@40020400"]
+	25 [label="gpio@40020000\nOrdinal: 25 | Handle: 10\n/soc/pin-controller@40020000/gpio@40020000"]
+	28 [label="reset-controller\nOrdinal: 28 | Handle: 11\n/soc/rcc@40023800/reset-controller"]
+	43 [label="serial@40004400\nOrdinal: 43 | Handle: 12\n/soc/serial@40004400"]
+	46 [label="serial@40011000\nOrdinal: 46 | Handle: 13\n/soc/serial@40011000"]
+	74 [label="i2c@40005400\nOrdinal: 74 | Handle: 14\n/soc/i2c@40005400"]
+	75 [label="hts221@5f\nOrdinal: 75 | Handle: 15\n/soc/i2c@40005400/hts221@5f"]
+	77 [label="lsm303agr-accel@19\nOrdinal: 77 | Handle: 16\n/soc/i2c@40005400/lsm303agr-accel@19"]
+	78 [label="lsm303agr-magn@1e\nOrdinal: 78 | Handle: 17\n/soc/i2c@40005400/lsm303agr-magn@1e"]
+	76 [label="lps22hb-press@5d\nOrdinal: 76 | Handle: 18\n/soc/i2c@40005400/lps22hb-press@5d"]
+	79 [label="lsm6dsl@6b\nOrdinal: 79 | Handle: 19\n/soc/i2c@40005400/lsm6dsl@6b"]
+	9 -> 28
+	9 -> 22
+	9 -> 74
+	9 -> 54
+	9 -> 81
+	9 -> 46
+	9 -> 82
+	9 -> 84
+	9 -> 25
+	9 -> 83
+	9 -> 80
+	9 -> 43
+	54 -> 79
+	54 -> 77
+	54 -> 78
+	28 -> 46
+	28 -> 43
+	74 -> 77
+	74 -> 78
+	74 -> 76
+	74 -> 75
+	74 -> 79
+}

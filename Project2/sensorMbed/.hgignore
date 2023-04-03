@@ -1,0 +1,7 @@
+^BUILD$
+^.mbed$
+^compile_commands.json$
+^.clangd$
+^.cache$
+^X_NUCLEO_IKS01A2$
+^mbed$

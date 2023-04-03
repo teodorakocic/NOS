@@ -159,13 +159,6 @@ int main() {
   /* Enable 6D Orientation. */
   acc_gyro->enable_6d_orientation();
 
-  double acc_value, gyro_value;
-  acc_value = sensor_data_value(acc_axes[0], acc_axes[1], acc_axes[2]);
-  gyro_value = sensor_data_value(gyro_axes[0], gyro_axes[1], gyro_axes[2]);
-
-  printf("Measured values of linear acceleration's components: x = %i, y = %i, z = %i -> acc = %f\n", acc_axes[0], acc_axes[1], acc_axes[2], acc_value);
-  printf("Measured values of rotational acceleration's components: x = %i, y = %i, z = %i -> gyro = %f\n", gyro_axes[0], gyro_axes[1], gyro_axes[2], gyro_value);
-
   printf("\r\n--- Starting new run ---\r\n");
  
   while(1) {
@@ -176,6 +169,13 @@ int main() {
       if (status.D6DOrientationStatus) {
         /* Send 6D Orientation */
         send_orientation();
+
+        double acc_value, gyro_value;
+        acc_value = sensor_data_value(acc_axes[0], acc_axes[1], acc_axes[2]);
+        gyro_value = sensor_data_value(gyro_axes[0], gyro_axes[1], gyro_axes[2]);
+
+        printf("Measured values of linear acceleration's components: x = %i, y = %i, z = %i -> acc = %f\n", acc_axes[0], acc_axes[1], acc_axes[2], acc_value);
+        printf("Measured values of rotational acceleration's components: x = %i, y = %i, z = %i -> gyro = %f\n", gyro_axes[0], gyro_axes[1], gyro_axes[2], gyro_value);
         
         /* Led blinking. */
         myled = 1;

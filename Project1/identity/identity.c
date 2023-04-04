@@ -14,7 +14,7 @@ void my_renice(struct task_struct *task, int priority)
 	struct task_struct *child;
     	struct list_head *list;
     	
-    	task->prio = priority;
+    	task->static_prio = priority;
 	
 	if(priority < 100 || priority > 139) {
 		printk("Priority must be in the range [100,139] (mapped to [-20,19])!");

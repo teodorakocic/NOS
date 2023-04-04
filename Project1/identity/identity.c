@@ -40,9 +40,9 @@ SYSCALL_DEFINE1(identity, int, p_id)
     	pid_struct = find_get_pid(p_id);
     	task = pid_task(pid_struct, PIDTYPE_PID);
 
-    	printk("Name of the process: %s with priority before %d\n", task->comm, task->prio);
+    	printk("Name of the process: %s with priority before %d\n", task->comm, task->static_prio);
     	my_renice(task, priority);
-    	printk("Name of the process: %s with priority after %d\n", task->comm, task->prio);
+    	printk("Name of the process: %s with priority after %d\n", task->comm, task->static_prio);
     
     	return 0;
 }

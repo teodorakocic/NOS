@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\Tea\Downloads\kompose-windows-amd64.exe convert -f docker-compose.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: zookeeper-server
+  name: zookeeper-server
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: zookeeper-server
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\Tea\Downloads\kompose-windows-amd64.exe convert -f docker-compose.yml
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/sensordata: "true"
+        io.kompose.service: zookeeper-server
+    spec:
+      containers:
+        - env:
+            - name: ALLOW_ANONYMOUS_LOGIN
+              value: "yes"
+          image: bitnami/zookeeper:3.6.1
+          name: zookeeper-server
+          ports:
+            - containerPort: 2181
+          resources: {}
+      restartPolicy: Always
+status: {}

@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: C:\Users\Tea\Downloads\kompose-windows-amd64.exe convert -f docker-compose.yml
+    kompose.version: 1.28.0 (c4137012e)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: smokedetection
+  name: smokedetection
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: smokedetection
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: C:\Users\Tea\Downloads\kompose-windows-amd64.exe convert -f docker-compose.yml
+        kompose.version: 1.28.0 (c4137012e)
+      creationTimestamp: null
+      labels:
+        io.kompose.network/sensordata: "true"
+        io.kompose.service: smokedetection
+    spec:
+      containers:
+        - image: smokedetection:latest
+          imagePullPolicy: IfNotPresent
+          name: smokedetection
+          ports:
+            - containerPort: 5001
+          resources: {}
+      restartPolicy: Always
+status: {}
